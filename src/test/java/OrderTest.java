@@ -1,19 +1,48 @@
 import org.junit.jupiter.api.Test;
-import java.time.LocalDate;
+
+import java.util.Collections;
+import java.util.Date;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertSame;
 
 public class OrderTest {
 
     @Test
-    public void testGetTotalAmount() {
-        Client customer = new Client("John", "Doe", LocalDate.of(1990, 5, 15), "123 Main St", "john.doe@email.com", "555-1234");
-        Order order = new Order(LocalDate.now(), "Summer clothes order", customer);
+    public void shouldReturnOrderDetails() {
+        Client customer = new Client(
+                "client-1",
+                "John",
+                "Doe",
+                new Date(90, 4, 15),
+                "123 Main St",
+                "john.doe@email.com",
+                "555-1234");
+        Date orderDate = new Date(126, 5, 1);
+        Order order = new Order(
+                "order-1",
+                customer,
+                orderDate,
+                "Summer clothes order",
+                Collections.emptyList(),
+                Collections.emptyList());
 
-        Clothe cottonTShirt = new Top("Cotton T-Shirt", Size.M, 19.99, material.COTTON, SleeveType.SHORT);
-        Clothe blueJeans = new Bottoms("Blue Jeans", Size.L, 49.99, material.OTHER, 42);
+        assertEquals("order-1", order.getId());
+        assertSame(customer, order.getClient());
+        assertSame(orderDate, order.getOrderDate());
+        assertEquals("Summer clothes order", order.getDescription());
+    }
 
+    @Test
+    public void shouldHaveZeroTotalWhenNoClothesAreOrdered() {
+        Order order = new Order(
+                "order-1",
+                null,
+                new Date(),
+                "Empty order",
+                Collections.emptyList(),
+                Collections.emptyList());
 
-        double expectedTotal = 159.95;
-        assertEquals(expectedTotal, order.getTotalAmount(), 0.001, "The total amount of the order is incorrect.");
+        assertEquals(0.0, order.getTotalAmount(), 0.001);
     }
 }

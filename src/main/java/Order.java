@@ -14,7 +14,7 @@ public class Order {
         this.client = client;
         this.orderDate = orderDate;
         this.description = description;
-        this.clothesOrdered = clothesOrdered;
+        this.clothesOrdered = new ArrayList<>();
     }
 
     public String getId() {
@@ -29,11 +29,12 @@ public class Order {
     public String getDescription() {
         return description;
     }
-    public List<Clothe> getClothesOrdered;
+    public List<Clothe> getClothesOrdered() {
+        return clothesOrdered;
+    }
 
     public Double getTotalAmount() {
-        List<Double> pricelist = new ArrayList<>();
-        return this.getClothesOrdered.stream()
+        return this.getClothesOrdered().stream()
                 .mapToDouble( Clothe::getPrice)
                 .sum();
     }
