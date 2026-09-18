@@ -1,4 +1,3 @@
-package PACKAGE_NAME;
-
-public class Size {
+public enum Size {
+    XS,S,M,L,XL,XXL
 }

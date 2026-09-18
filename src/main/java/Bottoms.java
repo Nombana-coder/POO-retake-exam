@@ -1,4 +1,3 @@
-package PACKAGE_NAME;
-
-public class Bottom {
+public class Bottoms {
+    private int hipSize; //tour de taille
 }

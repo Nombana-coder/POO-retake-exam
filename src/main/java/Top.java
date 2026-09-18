@@ -1,4 +1,3 @@
-package PACKAGE_NAME;
-
-public class Top {
+public class Top extends Clothe{
+    private SleeveType sleeve;
 }

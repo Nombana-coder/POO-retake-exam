@@ -1,4 +1,3 @@
-package PACKAGE_NAME;
-
-public class SleeveType {
+public enum SleeveType {
+    SHORT,LONG,NONE
 }
